@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "cifar10-classifier"
+version = "0.1.0"
+description = "my simple package"
+authors = ["i-alkisev"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+torch = "^2.0.1"
+torchvision = "^0.15.2"
+numpy = "^1.26.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
