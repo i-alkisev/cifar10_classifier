@@ -13,12 +13,12 @@ if __name__ == "__main__":
     batch_size = 512
     dl_train = torch.utils.data.DataLoader(dataset_cifar10_train, batch_size=batch_size, shuffle=True, num_workers=2)
     dl_test = torch.utils.data.DataLoader(dataset_cifar10_test, batch_size=batch_size, num_workers=2)
-    conv_network = ConvNet()
+    conv_network = ConvNet(use_batchnorm=True)
     conv_network.to(device)
     loss_fn = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(conv_network.parameters(), lr=2e-2)
 
-    n_epochs = 3
+    n_epochs = 2
     print(f'Training (n_epochs: {n_epochs})')
     train_losses, test_losses, train_accs, test_accs = training_loop(
         n_epochs=n_epochs, network=conv_network, loss_fn=loss_fn, 
