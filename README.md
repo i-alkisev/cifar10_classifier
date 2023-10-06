@@ -6,17 +6,25 @@
 Клонируем репозиторий
 ```bash
 git clone git@github.com:i-alkisev/cifar10_classifier.git
+```
+```bash
 cd cifar10_classifier/
 ```
 Создаем чистое виртуальное окружение с питоном
 ```bash
 conda create --name test-env python=3.11
+```
+```bash
 conda activate test-env
 ```
 Устанавливаем зависимости и запускаем хуки
 ```bash
 poetry install
+```
+```bash
 pre-commit install
+```
+```bash
 pre-commit run -a
 ```
 Запускаем обучение (занимает около 4 минут)
