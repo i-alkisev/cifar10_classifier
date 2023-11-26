@@ -1,7 +1,8 @@
 import numpy as np
 import torch
-from data import dataset_cifar10_test, dataset_cifar10_train
 from model import ConvNet
+
+from data import dataset_cifar10_test, dataset_cifar10_train
 
 
 def eval_model(network, loss_fn, dataloader, device):

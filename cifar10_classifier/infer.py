@@ -1,9 +1,10 @@
 import numpy as np
 import pandas as pd
 import torch
-from data import dataset_cifar10_test, dataset_cifar10_train
 from model import ConvNet
 from train import eval_model
+
+from data import dataset_cifar10_test, dataset_cifar10_train
 
 
 def make_prediction(network, dataloader, device):

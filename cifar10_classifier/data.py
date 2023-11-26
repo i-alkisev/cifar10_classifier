@@ -1,9 +1,5 @@
 import torchvision
 
-ds_train_no_transform = torchvision.datasets.CIFAR10(
-    root="./", train=True, transform=None, download=True
-)
-
 transform = torchvision.transforms.Compose(
     [
         torchvision.transforms.ToTensor(),
@@ -14,8 +10,8 @@ transform = torchvision.transforms.Compose(
 )
 
 dataset_cifar10_train = torchvision.datasets.CIFAR10(
-    root="./", train=True, transform=transform, download=True
+    root="./data/", train=True, transform=transform, download=False
 )
 dataset_cifar10_test = torchvision.datasets.CIFAR10(
-    root="./", train=False, transform=transform, download=True
+    root="./data/", train=False, transform=transform, download=False
 )

@@ -11,6 +11,8 @@ torch = "^2.0.1"
 torchvision = "^0.15.2"
 numpy = "^1.26.0"
 pandas = "^2.1.1"
+dvc = "^3.30.1"
+dvc-gdrive = "^2.20.0"
 
 
 [tool.poetry.group.dev.dependencies]

@@ -1,7 +1,8 @@
 import torch
-from data import dataset_cifar10_test, dataset_cifar10_train
 from model import ConvNet
 from train import eval_model, training_loop
+
+from data import dataset_cifar10_test, dataset_cifar10_train
 
 
 def main():
