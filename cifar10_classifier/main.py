@@ -1,8 +1,8 @@
 import torch
-from model import ConvNet
-from train import eval_model, training_loop
 
-from data import dataset_cifar10_test, dataset_cifar10_train
+from .data import get_dataloaders
+from .model import ConvNet
+from .train import eval_model, training_loop
 
 
 def main():
@@ -11,13 +11,7 @@ def main():
         device = torch.device("cuda", 0)
     print(f"Available device: {device}")
 
-    batch_size = 512
-    dl_train = torch.utils.data.DataLoader(
-        dataset_cifar10_train, batch_size=batch_size, shuffle=True, num_workers=2
-    )
-    dl_test = torch.utils.data.DataLoader(
-        dataset_cifar10_test, batch_size=batch_size, num_workers=2
-    )
+    dl_train, dl_test = get_dataloaders()
     conv_network = ConvNet(use_batchnorm=True)
     conv_network.to(device)
     loss_fn = torch.nn.CrossEntropyLoss()

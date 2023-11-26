@@ -1,8 +1,5 @@
 import numpy as np
 import torch
-from model import ConvNet
-
-from data import dataset_cifar10_test, dataset_cifar10_train
 
 
 def eval_model(network, loss_fn, dataloader, device):
@@ -65,42 +62,3 @@ def training_loop(n_epochs, network, loss_fn, optimizer, dl_train, dl_test, devi
             )
 
     return train_losses, test_losses, train_accuracies, test_accuracies
-
-
-def main():
-    device = torch.device("cpu")
-    if torch.cuda.is_available():
-        device = torch.device("cuda", 0)
-    print(f"Available device: {device}")
-
-    batch_size = 512
-    dl_train = torch.utils.data.DataLoader(
-        dataset_cifar10_train, batch_size=batch_size, shuffle=True, num_workers=2
-    )
-    dl_test = torch.utils.data.DataLoader(
-        dataset_cifar10_test, batch_size=batch_size, num_workers=2
-    )
-    conv_network = ConvNet(use_batchnorm=True)
-    conv_network.to(device)
-    loss_fn = torch.nn.CrossEntropyLoss()
-    optimizer = torch.optim.SGD(conv_network.parameters(), lr=2e-2)
-
-    n_epochs = 1
-    print(f"Training (n_epochs: {n_epochs})")
-    train_losses, test_losses, train_accs, test_accs = training_loop(
-        n_epochs=n_epochs,
-        network=conv_network,
-        loss_fn=loss_fn,
-        optimizer=optimizer,
-        dl_train=dl_train,
-        dl_test=dl_test,
-        device=device,
-    )
-
-    filename = "cifar10_cnn_classifier.pth"
-    torch.save(conv_network.state_dict(), filename)
-    print(f"Model saved in '{filename}'")
-
-
-if __name__ == "__main__":
-    main()

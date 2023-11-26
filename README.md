@@ -31,15 +31,11 @@ pre-commit install
 ```bash
 pre-commit run -a
 ```
-Скачиваем данные
-```bash
-dvc pull
-```
 Запускаем обучение (занимает около 4 минут)
 ```bash
-python cifar10_classifier/train.py
+python train.py
 ```
 Смотрим метрики на трейне и тесте, а также сохраняем предсказание для теста в .csv файл
 ```bash
-python cifar10_classifier/infer.py
+python infer.py
 ```

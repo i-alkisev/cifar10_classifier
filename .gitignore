@@ -46,6 +46,7 @@ __pycache__/
 
 # Custom
 ########
+outputs/
 cifar-10-batches-py/
 *.pth
 *.csv
