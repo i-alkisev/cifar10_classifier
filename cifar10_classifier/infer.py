@@ -6,7 +6,7 @@ from model import ConvNet
 from train import eval_model
 
 
-def make_prediction(network, dataloader):
+def make_prediction(network, dataloader, device):
     predictions = []
     network.eval()
     with torch.no_grad():
@@ -18,7 +18,7 @@ def make_prediction(network, dataloader):
     return np.concatenate(predictions)
 
 
-if __name__ == "__main__":
+def main():
     device = torch.device("cpu")
     if torch.cuda.is_available():
         device = torch.device("cuda", 0)
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     )
 
     print("Making test predictions")
-    prediction = make_prediction(conv_network, dl_test)
+    prediction = make_prediction(conv_network, dl_test, device)
 
     prediction_df = pd.DataFrame(
         {"image_id": np.arange(test_size), "label_id": prediction}
@@ -57,3 +57,7 @@ if __name__ == "__main__":
     prediction_filename = "test_prediction.csv"
     prediction_df.to_csv(prediction_filename, index=False)
     print(f"Predictions saved in '{prediction_filename}'")
+
+
+if __name__ == "__main__":
+    main()

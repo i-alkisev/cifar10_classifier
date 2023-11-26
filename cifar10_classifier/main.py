@@ -3,7 +3,8 @@ from data import dataset_cifar10_test, dataset_cifar10_train
 from model import ConvNet
 from train import eval_model, training_loop
 
-if __name__ == "__main__":
+
+def main():
     device = torch.device("cpu")
     if torch.cuda.is_available():
         device = torch.device("cuda", 0)
@@ -44,3 +45,7 @@ if __name__ == "__main__":
     filename = "cifar10_cnn_classifier.pth"
     torch.save(conv_network.state_dict(), filename)
     print(f"Model saved in '{filename}'")
+
+
+if __name__ == "__main__":
+    main()

@@ -66,7 +66,7 @@ def training_loop(n_epochs, network, loss_fn, optimizer, dl_train, dl_test, devi
     return train_losses, test_losses, train_accuracies, test_accuracies
 
 
-if __name__ == "__main__":
+def main():
     device = torch.device("cpu")
     if torch.cuda.is_available():
         device = torch.device("cuda", 0)
@@ -99,3 +99,7 @@ if __name__ == "__main__":
     filename = "cifar10_cnn_classifier.pth"
     torch.save(conv_network.state_dict(), filename)
     print(f"Model saved in '{filename}'")
+
+
+if __name__ == "__main__":
+    main()
