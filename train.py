@@ -21,7 +21,7 @@ def main(cfg: Params) -> None:
         device = torch.device("cuda", 0)
     print(f"Available device: {device}")
 
-    mlflow.set_experiment(experiment_name=cfg.mlflow.experiment_name)
+    #  mlflow.set_experiment(experiment_name=cfg.mlflow.experiment_name)
     mlflow.set_tracking_uri(cfg.mlflow.uri)
 
     git_commit_id = (
