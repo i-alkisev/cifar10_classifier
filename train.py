@@ -1,4 +1,7 @@
+import subprocess
+
 import hydra
+import mlflow
 import torch
 from hydra.core.config_store import ConfigStore
 
@@ -17,6 +20,18 @@ def main(cfg: Params) -> None:
     if torch.cuda.is_available():
         device = torch.device("cuda", 0)
     print(f"Available device: {device}")
+
+    mlflow.set_experiment(experiment_name=cfg.mlflow.experiment_name)
+    mlflow.set_tracking_uri(cfg.mlflow.uri)
+
+    git_commit_id = (
+        subprocess.check_output(["git", "rev-parse", "--short", "HEAD"])
+        .strip()
+        .decode("utf-8")
+    )
+    mlflow.log_param("git_commit_id", git_commit_id)
+    mlflow.log_param("learning_rate", cfg.training.learning_rate)
+    mlflow.log_param("n_epochs", cfg.training.epochs)
 
     dl_train, dl_test = get_dataloaders(
         cfg.data.root,

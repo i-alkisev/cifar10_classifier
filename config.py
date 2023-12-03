@@ -27,8 +27,15 @@ class Inferring:
 
 
 @dataclass
+class Mlflow:
+    experiment_name: str
+    uri: str
+
+
+@dataclass
 class Params:
     data: Data
     model: Model
     training: Training
     inferring: Inferring
+    mlflow: Mlflow
